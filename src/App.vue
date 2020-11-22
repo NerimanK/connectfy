@@ -1,62 +1,49 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      flat
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-      <SideBar/>
-    </v-content>
-  </v-app>
+  <div id="app" class="back">
+    <v-app id="inspire">
+      <v-content>
+        <v-container fluid fill-height>
+          <router-view></router-view>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld';
-import SideBar from './components/SideBar';
-export default {
-  name: 'App',
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#inspire {
+  background: none;
+}
 
-  components: {
-    HelloWorld,
-    SideBar
-  },
+#nav {
+  padding: 30px;
+}
 
-  data: () => ({
-    //
-  }),
-};
-</script>
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.back {
+  background-image: url(https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixlib=rb-1.2.1&auto=format&fit=crop&w=3035&q=80);
+  background-size: cover;
+  opacity: 0.8;
+}
+.back {
+background: rgb(27,28,33);
+background: linear-gradient(180deg, rgba(27,28,33,1) 0%, rgba(116,123,149,1) 72%, rgba(27,28,33,1) 100%);}
+#inspire {
+  background: none;
+}
+</style>
