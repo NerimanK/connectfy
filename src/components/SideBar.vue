@@ -1,92 +1,60 @@
  <template>
-        <v-navigation-drawer
-          v-model="drawer"
-          color="primary"
-          :mini-variant="miniVariant"
-          :right="right"
-          permanent="permanent"
-          :src="bg"
-          absolute
-          dark
-        >
-          <v-list
-            dense
-            nav
-            class="py-0"
-          >
-            <v-list-item two-line :class="miniVariant && 'px-0'">
-              <v-list-item-avatar>
-                <img src="https://randomuser.me/api/portraits/men/81.jpg">
-              </v-list-item-avatar>
-  
-              <v-list-item-content>
-                <v-list-item-title>Application</v-list-item-title>
-                <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-  
-            <v-divider></v-divider>
-  
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-  
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
+  <v-navigation-drawer
+    v-model="drawer"
+    color="#8D93AB"
+    :mini-variant="miniVariant"
+    :right="right"
+    permanent="permanent"
+    :src="bg"
+    app
+  >
+    <v-container fill-height>
+      <v-row justify="" no-gutters style="height: 100%">
+        <v-col cols="12" align-self="end"> <v-icon color="white" size="8em" class="font-bold" >mdi-car</v-icon> <p class="card-fonts"><br>Deine Services</p> </v-col>
+        <v-col cols="12" align-self="end">  </v-col>
+
+        <v-col justify="start" cols="12" align-self="end"> <v-btn :to="'/'" icon><v-icon>mdi-arrow-left</v-icon> </v-btn> </v-col>
+      </v-row>
+
+    </v-container>
+  </v-navigation-drawer>
 </template>
 
 
 <script>
 export default {
-
-  data () {
+  data() {
     return {
       drawer: true,
       items: [
-        { title: 'Home', icon: 'mdi-home' },
-        { title: 'Services', icon: 'mdi-face-agent' },
-        { title: 'Kosten', icon: 'mdi-currency-eur' },
+        { title: "Home", icon: "mdi-home" },
+        { title: "Services", icon: "mdi-face-agent" },
+        { title: "Kosten", icon: "mdi-currency-eur" },
 
-        { title: 'Einstellungen', icon: 'mdi-cog' },
+        { title: "Einstellungen", icon: "mdi-cog" },
       ],
-      color: 'primary',
-      colors: [
-        'primary',
-        'blue',
-        'success',
-        'red',
-        'teal',
-      ],
+      color: "primary",
+      colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
       permanent: true,
       miniVariant: false,
       expandOnHover: false,
       background: false,
-    }
+    };
   },
   computed: {
-    bg () {
-      return this.background ? 'https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg' : undefined
+    bg() {
+      return this.background
+        ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        : undefined;
     },
-  } 
-
-}
+  },
+};
 </script>
 
 <style>
-
 </style>
         
         
         <style>
-        
-        </style>
+</style>

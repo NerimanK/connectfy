@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-row justify="center" no-gutters style="height: 100%">
       <v-col cols="4" align-self="end">
-        <v-card class="card-fonts" color="#8D93AB" outlined tile>
+        <v-card class="card-fonts" color="grey" outlined tile>
           <v-card-title>Login</v-card-title>
           <v-card-actions>
             <v-container fluid>
