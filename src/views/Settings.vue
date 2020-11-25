@@ -11,7 +11,7 @@
     <v-row no-gutters style="height: 100%">
       <v-col
         class="pa-8 justify-space-around"
-        :key="menu"
+        :key="menu.title"
         v-for="menu in menus"
         cols="4"
         align-self="center"

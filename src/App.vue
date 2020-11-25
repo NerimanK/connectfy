@@ -17,8 +17,9 @@
 <script>
 import SideBar from './components/SideBar'
 
+
 export default {
-  components: {SideBar},
+  components: {SideBar },
   computed: {
     currentRouteName() {
       console.log(this.$route.name)

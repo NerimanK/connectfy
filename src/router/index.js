@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Services from '../views/Services.vue'
+import NewService from '../views/NewServices.vue'
+import Settings from '../views/Settings.vue'
+import Newsletter from '../views/Newsletter.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +13,21 @@ const routes = [
     path: '/services',
     name: 'Services',
     component: Services
+  },
+  {
+    path: '/newservice',
+    name: 'NewService',
+    component: NewService
+  },
+  {
+    path: '/newsletter',
+    name: 'Newsletter',
+    component: Newsletter
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   },
   {
     path: '/',

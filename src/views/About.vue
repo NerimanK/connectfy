@@ -4,12 +4,12 @@
     <v-row justify="space-around" no-gutters style="height: 100%">
       <v-col
         class="justify-space-around"
-        :key="menu"
+        :key="menu.title + ''"
         v-for="menu in menus"
         cols="3"
         align-self="end"
       >
-        <v-card :to="menu.route" class="ma-3 card-fonts" height="300px" color="#8D93AB">
+        <v-card @click="setSideBar(menu.icon,menu.title, menu.route)"  class="ma-3 card-fonts" height="300px" color="#8D93AB">
           <v-card-actions>
             <v-container fluid>
               <v-row>
@@ -38,6 +38,7 @@
 
 
 <script>
+
 export default {
   name: "Home",
   components: {},
@@ -49,6 +50,18 @@ export default {
       { title: "Einstellungen", icon:  "mdi-cog-outline", route: "settings" },
     ],
   }),
+    // define methods under the `methods` object
+  methods: {
+    setSideBar: function (icon, title,route) {
+      // `this` inside methods point to the Vue instance
+            this.$store.commit('setSideBarLogo', icon)
+
+      this.$store.commit('setSideBarText',title)
+      // `event` is the native DOM event
+      this.$router.push(route);
+
+    }
+  }
 };
 </script>
 

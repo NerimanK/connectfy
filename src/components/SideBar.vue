@@ -10,7 +10,7 @@
   >
     <v-container fill-height>
       <v-row justify="" no-gutters style="height: 100%">
-        <v-col cols="12" align-self="end"> <v-icon color="white" size="8em" class="font-bold" >mdi-car</v-icon> <p class="card-fonts"><br>Deine Services</p> </v-col>
+        <v-col cols="12" align-self="end"> <v-icon color="white" size="8em" class="font-bold" >{{ $store.getters.sideBarLogo }}</v-icon> <p class="card-fonts"><br>{{$store.getters.sideBarText }}</p> </v-col>
         <v-col cols="12" align-self="end">  </v-col>
 
         <v-col justify="start" cols="12" align-self="end"> <v-btn :to="'/'" icon><v-icon>mdi-arrow-left</v-icon> </v-btn> </v-col>
