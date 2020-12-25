@@ -1,62 +1,73 @@
 <template>
-  <v-container fill-height>
-    <v-row justify="center" no-gutters style="height: 100%">
-      <v-col cols="4" align-self="end">
-        <v-card class="card-fonts" color="grey" outlined tile>
-          <v-card-title>Login</v-card-title>
+  <v-container fill-height fluid>
+    
+    <v-row justify="space-around" no-gutters style="height: 100%">
+      <v-col
+        class="justify-space-around"
+        :key="menu.title + ''"
+        v-for="menu in menus"
+        cols="3"
+        align-self="end"
+      >
+        <v-card @click="setSideBar(menu.icon,menu.title, menu.route)"  class="ma-3 card-fonts" height="300px" color="#8D93AB">
           <v-card-actions>
             <v-container fluid>
-              <v-row dense>
+              <v-row>
                 <v-col cols="12">
-                  <v-text-field
-                    icon="mdi-weather"
-                    placeholder="Username"
-                  ></v-text-field>
+                  <v-icon class="card-fonts" color="white">{{menu.icon}}</v-icon>
                 </v-col>
-
-                <v-col cols="12">
-                  <v-text-field
-                    :type="'password'"
-                    icon="mdi-weather"
-                    placeholder="Password"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="4">
-                  <v-btn :to="'about'">Log in</v-btn>
+                <v-col class="mt-9" cols="12">
+                  <span class="card-fonts"> {{ menu.title }} </span>
                 </v-col>
               </v-row>
+              <v-spacer />
             </v-container>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" align-self="end">
-        <v-icon class="font-bold" color="blue lighten-1">mdi-axis-arrow</v-icon>
+        <v-icon class="font-bold">mdi-axis-arrow</v-icon>
         <p class="font"><strong>C</strong>ONNECT<strong>F</strong>Y</p>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
+
+
+
+
 <script>
-// @ is an alias to /src
 
 export default {
   name: "Home",
   components: {},
   data: () => ({
-    alignments: ["start", "center", "end"],
+    menus: [
+      { title: "Deine Services", icon: "mdi-car", route: "services" },
+      { title: "Neue Services", icon:  "mdi-book-open-page-variant-outline", route: "newservice" },
+      { title: "Newsletter", icon: "mdi-newspaper-variant-multiple", route:"newsletter" },
+      { title: "Einstellungen", icon:  "mdi-cog-outline", route: "settings" },
+    ],
   }),
+    // define methods under the `methods` object
+  methods: {
+    setSideBar: function (icon, title,route) {
+      // `this` inside methods point to the Vue instance
+            this.$store.commit('setSideBarLogo', icon)
+
+      this.$store.commit('setSideBarText',title)
+      // `event` is the native DOM event
+      this.$router.push(route);
+
+    }
+  }
 };
 </script>
 
 <style>
-.card-fonts{
-  color: white;
-  font-weight: 300;
-  font-size: 1.35em !important;
-}
-
 </style>
+
 
 <style scoped>
 .font-bold {
@@ -70,8 +81,6 @@ export default {
   color: white;
   font-weight: 300;
   font-size: 4em !important;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16777em;
 }
-
-
 </style>
