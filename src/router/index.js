@@ -3,12 +3,29 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Services from '../views/Services.vue'
 import NewService from '../views/NewServices.vue'
-import Settings from '../views/Settings.vue'
+import Settings from '../views/Settings/SettingsPre.vue'
 import Newsletter from '../views/Newsletter.vue'
-
+import SystemSettings from '../views/Settings/SystemSettings.vue'
+import PersonalSettings from '../views/Settings/PersonalSetting.vue'
+import Rechnung from '../views/Rechnung.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/rechnung',
+    name: 'rechnung',
+    component: Rechnung
+  },
+  {
+    path: '/personalsettings',
+    name: 'personalsettings',
+    component: PersonalSettings
+  },
+  {
+    path: '/systemsettings',
+    name: 'systemsettings',
+    component: SystemSettings
+  },
   {
     path: '/services',
     name: 'Services',
@@ -49,5 +66,20 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to,from,next) => {
+  var routes = [];
+
+  if (localStorage.getItem("LS_ROUTE_KEY") !== null) {
+    routes = JSON.parse(localStorage.getItem("LS_ROUTE_KEY")) 
+  }
+  if(from.path !== "")
+  {
+    routes.push(from.path) 
+  }
+  console.log("jimmy",JSON.stringify(routes))
+  window.localStorage.setItem('LS_ROUTE_KEY', JSON.stringify(routes));
+  next()
+});
 
 export default router

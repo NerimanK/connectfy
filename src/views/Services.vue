@@ -1,33 +1,45 @@
 <template>
-  <v-container >
-                <Dialog></Dialog>
+  <v-container>
+    <Dialog :title="title" :isAdding="isAdding" :name="name"></Dialog>
 
     <v-toolbar flat color="rgba(0,0,0,0)" dense>
-        <v-spacer></v-spacer>
-        <v-btn icon color="blue" class=" mr-4"><v-icon class="font-small">mdi-hexagon-multiple-outline</v-icon> </v-btn><p class="mr-4 mt-2 font-top-right">79,99€</p>
-        
+      <v-spacer></v-spacer>
+      <v-btn to="/rechnung" icon color="blue" class="mr-4"
+        ><v-icon class="font-small">mdi-hexagon-multiple-outline</v-icon>
+      </v-btn>
+      <p class="mr-4 mt-2 font-top-right">
+        {{ $store.getters.getCurrentPrice }}€
+      </p>
     </v-toolbar>
 
     <v-row no-gutters style="height: 100%">
       <v-col
         class="pa-8 justify-space-around"
         :key="menu"
-        v-for="menu in menus"
+        v-for="menu in features"
         cols="4"
         align-self="center"
       >
         <v-card class="ma-3 card-fonts" height="300px" color="rgba(0,0,0,0.32)">
           <v-card-title primary-title class="pt-12 justify-center align-center">
             <span class="pt-12 mt-9 justify-center font"
-              >{{ menu.title }}
+              >{{ menu.feature }}
             </span>
           </v-card-title>
 
           <v-card-actions class="mt-6 mr-5 justify-end">
-            <v-btn @click="$store.commit('change', true)" icon outlined color="white"><v-icon>mdi-minus</v-icon></v-btn>
+            <v-btn
+              @click="setDialog(false, menu.makers, menu.feature)"
+              icon
+              outlined
+              color="white"
+              ><v-icon>mdi-minus</v-icon></v-btn
+            >
           </v-card-actions>
           <v-card-text color="white" class="mr-5 text-white text-end">
-            <p class="white-colr">Mercedes,Bmw</p>
+            <p class="white-colr">
+              {{ text(menu.makers) }}
+            </p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -40,14 +52,44 @@
 
 
 <script>
-import Dialog from '../components/Dialog'
+import Dialog from "../components/Dialog";
 export default {
   name: "Home",
-  computed: 
-  {
-
+  computed: {
+    features() {
+      var filtered = [];
+      var unfiltered = this.$store.getters.bookedServices.cards;
+      console.log(unfiltered);
+      unfiltered.forEach((element) => {
+        if (element.makers.length > 0) {
+          filtered.push(element);
+        }
+      });
+      console.log(filtered);
+      return filtered;
+    },
   },
-  components: {Dialog},
+  methods: {
+    text(makers) {
+      var text = "";
+      console.log(makers);
+      makers.forEach((element) => {
+        text += element + ", ";
+      });
+
+      return text.substring(0, text.length - 2);
+    },
+    setDialog(isAdding, makers, title) {
+      this.isAdding = isAdding;
+      this.name = makers;
+      this.title = title;
+      console.log(title);
+      console.log(makers);
+
+      this.$store.commit("change", true);
+    },
+  },
+  components: { Dialog },
   data: () => ({
     menus: [
       { title: "Navigation", icon: "mdi-car", route: "services" },
@@ -63,6 +105,9 @@ export default {
       },
       { title: "Massage", icon: "mdi-cog-outline", route: "settings" },
     ],
+    isAdding: false,
+    name: "",
+    title: "",
   }),
 };
 </script>
@@ -82,7 +127,7 @@ export default {
 .font {
   color: white;
   font-weight: 380;
-  font-size: 2em !important;
+  font-size: 1.5em !important;
 }
 .font-top-right {
   color: white;
