@@ -5,8 +5,7 @@
       <v-toolbar-title>
         <v-avatar size="100">
           <v-img
-            src="https://i.pravatar.cc/400?img=1
-"
+            src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2549&q=80"
           ></v-img>
         </v-avatar>
       </v-toolbar-title>

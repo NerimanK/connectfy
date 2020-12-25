@@ -4,8 +4,8 @@
 
     <v-toolbar flat color="rgba(0,0,0,0)" dense>
       <v-spacer></v-spacer>
-      <v-btn to="/rechnung" icon color="blue" class="mr-4"
-        ><v-icon class="font-small">mdi-hexagon-multiple-outline</v-icon>
+      <v-btn small to="/rechnung" icon color="blue" class="mr-8"
+        ><v-img src="icons8-loading-100.png"></v-img>
       </v-btn>
       <p class="mr-4 mt-2 font-top-right">
         {{ $store.getters.getCurrentPrice }}€

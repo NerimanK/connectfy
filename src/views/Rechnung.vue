@@ -27,7 +27,7 @@
                 <v-divider></v-divider>
                 <v-row dense>
                   <v-col class="text-left" cols="3">Summe</v-col>
-                  <v-col cols="9">{{card.makers.length * card.price}}€ /mtl.</v-col>
+                  <v-col cols="9">{{(card.makers.length * card.price).toFixed(2)}}€ /mtl.</v-col>
                   <v-col v-if="card.makers.length > 1" class="text-left" cols="3"
                     >Kombirabatte</v-col
                   >
