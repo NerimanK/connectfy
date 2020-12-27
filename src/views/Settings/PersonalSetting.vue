@@ -1,5 +1,26 @@
 <template>
-  <v-card flat color="rgba(0,0,0,0)" class="mx-auto" max-width="800px">
+  <v-card flat color="rgba(0,0,0,0)" class="mx-auto">
+    <v-dialog
+      class="background-vcard"
+      v-model="bg"
+      scrollable
+      max-width="500px"
+    >
+      <v-card color="#27282E" class="background-vcard">
+
+        <v-card-text>
+          <p class="text-left card-fonts mt-12">
+            Dein Abonnement wurde erfolgreich gekündigt! 
+          </p>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn @click="bg = false" text color="green"
+            >Okay</v-btn
+          ></v-card-actions
+        >
+      </v-card>
+    </v-dialog>
     <v-toolbar color="rgba(0,0,0,0)" dark height="100px" flat>
       <v-spacer></v-spacer>
       <v-toolbar-title>
@@ -27,7 +48,9 @@
       </v-row>
     </v-container>
     <v-card-actions>
-      <v-btn dark color="rgba(0,0,0,0.11)"> Abonnement Kündigen </v-btn>
+      <v-btn dark @click="bg = true" color="rgba(0,0,0,0.11)">
+        Abonnement Kündigen
+      </v-btn>
       <v-spacer />
       <v-btn dark color="green"> Änderungen Speichern </v-btn>
     </v-card-actions>
@@ -46,6 +69,7 @@ export default {
     SystemSettings,
   },
   data: () => ({
+    bg: false,
     cards: [
       {
         title: "E-Mail",
