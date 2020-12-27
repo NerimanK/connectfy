@@ -12,7 +12,7 @@
           class="ml-11 mt-5 white--text list-item-title"
         >
           <p class="card-fonts">
-            Navigation {{ text(isAdding) }} für?
+            {{title}} {{ text(isAdding) }} für?
           </p></v-card-title
         >
         <v-divider></v-divider>
@@ -92,7 +92,7 @@ export default {
       if (!isAdding) return "entfernen";
     },
     generateList(name, isAdding) {
-      if ( !isAdding)
+      if (!isAdding)
       {
         return name
       }

@@ -29,7 +29,7 @@
 
           <v-card-actions class="mt-6 mr-5 justify-end">
             <v-btn
-              @click="setDialog(false, menu.makers, menu.feature)"
+              @click="setDialog(false, menu.makers, menu.feature, menu.feature)"
               icon
               outlined
               color="white"
