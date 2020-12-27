@@ -62,7 +62,6 @@ const store = new Vuex.Store({
             state.sideBarText = sideBarText
         },
         setSideBarLogo(state, sideBarLogo) {
-            console.log(state.sideBarLogo)
             state.sideBarLogo = sideBarLogo
         },
         updateList(state, value)
@@ -79,9 +78,7 @@ const store = new Vuex.Store({
             var price = 0
             var discount = 0
             state.bookedServices.cards.forEach(element => {
-                console.log(element.makers.length)
                 discount = element.makers.length * 0.1 -0.1
-                console.log(element.makers.length)
                 if(discount == 0) discount = 1
                 var priceTag = element.price - discount * element.price
                 price += element.makers.length * priceTag

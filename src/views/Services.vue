@@ -15,7 +15,7 @@
     <v-row no-gutters style="height: 100%">
       <v-col
         class="pa-8 justify-space-around"
-        :key="menu"
+        :key="menu.features"
         v-for="menu in features"
         cols="4"
         align-self="center"
@@ -59,20 +59,17 @@ export default {
     features() {
       var filtered = [];
       var unfiltered = this.$store.getters.bookedServices.cards;
-      console.log(unfiltered);
       unfiltered.forEach((element) => {
         if (element.makers.length > 0) {
           filtered.push(element);
         }
       });
-      console.log(filtered);
       return filtered;
     },
   },
   methods: {
     text(makers) {
       var text = "";
-      console.log(makers);
       makers.forEach((element) => {
         text += element + ", ";
       });
@@ -83,8 +80,6 @@ export default {
       this.isAdding = isAdding;
       this.name = makers;
       this.title = title;
-      console.log(title);
-      console.log(makers);
 
       this.$store.commit("change", true);
     },

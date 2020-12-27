@@ -77,7 +77,6 @@ router.beforeEach((to,from,next) => {
   {
     routes.push(from.path) 
   }
-  console.log("jimmy",JSON.stringify(routes))
   window.localStorage.setItem('LS_ROUTE_KEY', JSON.stringify(routes));
   next()
 });

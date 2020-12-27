@@ -2,7 +2,7 @@
   <v-container>
     <Dialog :title="title" :isAdding="isAdding" :name="name"></Dialog>
 
-    <v-toolbar flat color="rgba(0,0,0,0)" dense>
+    <v-toolbar flat color="rgba(0,0,0,0)" dense class="mb-12">
       <v-spacer></v-spacer>
       <v-btn small to="/rechnung" icon color="blue" class="mr-8"
         ><v-img src="icons8-loading-100.png"></v-img>
@@ -29,11 +29,11 @@
 
             <v-card-actions class="mt-6 mr-5 justify-end">
               <v-btn
-                @click="setDialog(false, menu.makers, menu.feature)"
+                @click="setDialog(true, menu.makers, menu.feature)"
                 icon
                 outlined
                 color="white"
-                ><v-icon>mdi-minus</v-icon></v-btn
+                ><v-icon>mdi-plus</v-icon></v-btn
               >
             </v-card-actions>
             <v-card-text color="white" class="mr-5 text-white text-end">
@@ -96,10 +96,11 @@ export default {
       var unfiltered = this.$store.getters.bookedServices.cards;
       
       unfiltered.forEach((element) => {
-        if (element.makers.length >=3) {
+        if (element.makers.length <= 0) {
           filtered.push(element);
         }
       });
+
       
       return filtered;
     },
@@ -108,7 +109,7 @@ export default {
       var unfiltered = this.$store.getters.bookedServices.cards;
       
       unfiltered.forEach((element) => {
-        if (element.makers.length < 3) {
+        if (element.makers.length == 1 || element.makers.length == 2) {
           filtered.push(element);
         }
       });
@@ -130,7 +131,6 @@ export default {
       this.isAdding = isAdding
       this.name = makers
       this.title = title
-      console.log(title)
             
 
       this.$store.commit('change', true)

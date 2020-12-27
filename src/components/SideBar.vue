@@ -59,12 +59,11 @@ export default {
       var currentRoute = ""
       var routes = []
       if(localStorage.getItem("LS_ROUTE_KEY"))
-      {  console.log(localStorage.getItem("LS_ROUTE_KEY"))     
+      {      
         routes = JSON.parse(localStorage.getItem("LS_ROUTE_KEY")) 
 }
       currentRoute = routes.pop()
       window.localStorage.setItem('LS_ROUTE_KEY', JSON.stringify(routes));
-      console.log("pimmi",currentRoute)
       return  currentRoute;
     },
   },

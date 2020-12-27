@@ -21,7 +21,7 @@
             <v-list-item-group style="width: 400px" v-model="model">
               <v-list-item
                 @click="itemClicked(item, title, isAdding)"
-                v-for="(item, i) in generateList(name)"
+                v-for="(item, i) in generateList(name, isAdding)"
                 :key="i"
               >
                 <v-list-item-content class="list-item">
@@ -44,6 +44,16 @@
 
 
 <script>
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
 export default {
   data() {
     return {
@@ -76,17 +86,22 @@ export default {
     title: String,
   },
   methods: {
+    
     text(isAdding) {
       if (isAdding) return "hinzufügen";
       if (!isAdding) return "entfernen";
     },
-    generateList(name) {
+    generateList(name, isAdding) {
+      if ( !isAdding)
+      {
+        return name
+      }
       var superReferenceList = ["Audi", "BMW", "Mercedes"];
       var referenceList = ["Audi", "BMW", "Mercedes"];
       referenceList = referenceList.filter(function (val) {
         return name.indexOf(val) == -1;
       });
-      console.log(referenceList);
+      console.log(referenceList, name)
       if (referenceList.length == 0) {
         referenceList = superReferenceList;
       }
@@ -98,24 +113,21 @@ export default {
       if (isAdding) {
         rawValue.cards.forEach(function (value, i) {
           if (value.feature == title) {
-            console.log(value.makers);
-            console.log(i);
             buffer = rawValue.cards[i].makers;
             buffer.push(itemName)
             rawValue.cards[i].makers = buffer;
           }
         });
+        console.log(rawValue)
         this.$store.commit("updateList", rawValue);
         this.$store.commit("change", false);
       } else {
-        console.log(rawValue);
 
         rawValue.cards.forEach(function (value, i) {
           if (value.feature == title) {
-            console.log(value.makers);
-            console.log(i);
             buffer = rawValue.cards[i].makers;
-            buffer.pop(itemName);
+            removeA(buffer, itemName)
+            console.log(rawValue, itemName)
             rawValue.cards[i].makers = buffer;
           }
         });
